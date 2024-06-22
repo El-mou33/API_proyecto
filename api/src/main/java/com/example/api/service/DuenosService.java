@@ -15,6 +15,8 @@ public class DuenosService {
 
         return duenosRepository.findAll();
     }
+    public void save (){
 
+    }
 
 }
