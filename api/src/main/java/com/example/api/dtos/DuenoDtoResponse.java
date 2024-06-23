@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class DueñoDtoResponse {
+public class DuenoDtoResponse {
 
     private Long idDueno;
 

@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: Spring API
+  description: API documentation for Spring ApiProyecto project
+  version: 1.0.0
+paths:
+  #DuenosController
+  /api/findAll:
+    get:
+      summary: findAll
+      description: Devuelve todos los duenos
+      responses:
+        '200':
+          description: List of all duenos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DuenoDtoResponse'
+  /api/findById/{id}:
+    get:
+      summary: findById
+      description: Devuelve dueno por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del dueno a encontrar
+      responses:
+        '200':
+          description: Dueno encontrado por ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DuenoDtoResponse'
+        '404':
+          description: Dueno no encontrado
+  /api/add:
+    post:
+      summary: add
+      description: Agrega un nuevo dueno
+      requestBody:
+        description: Objeto Dueno a ser agregado
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DuenoDtoRequest'
+      responses:
+        '201':
+          description: Dueno creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DuenoDtoRequest'
+  /api/update/{id}:
+    put:
+      summary: update
+      description: Actualiza un dueno existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del dueno a actualizar
+      requestBody:
+        description: Objeto Dueno con información actualizada
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DuenoDtoRequest'
+      responses:
+        '201':
+          description: Dueno actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DuenoDtoRequest'
+
+components:
+  schemas:
+    DuenoDtoResponse:
+      type: object
+      properties:
+        idDueno:
+          type: integer
+          description: ID del dueño
+        nombre:
+          type: string
+          description: Nombre del dueño
+        apellidos:
+          type: string
+          description: Apellidos del dueño
+        dni:
+          type: string
+          description: DNI del dueño
+        telefono:
+          type: integer
+          description: Teléfono del dueño
+        email:
+          type: string
+          format: email
+          description: Correo electrónico del dueño
+
+    DuenoDtoRequest:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: Nombre del dueño
+        apellidos:
+          type: string
+          description: Apellidos del dueño
+        dni:
+          type: string
+          description: DNI del dueño
+        telefono:
+          type: integer
+          description: Teléfono del dueño
+        email:
+          type: string
+          format: email
+          description: Correo electrónico del dueño

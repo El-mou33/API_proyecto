@@ -1,19 +1,16 @@
 package com.example.api.controllers;
 
+import com.example.api.dtos.DuenoDtoResponse;
 import com.example.api.dtos.DuenosDtoRequest;
-import com.example.api.dtos.DueñoDtoResponse;
-import com.example.api.mappers.DuenosMapper;
 import com.example.api.models.Dueños;
 import com.example.api.service.DuenosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -23,14 +20,14 @@ public class DuenosController {
 
     @Transactional(readOnly = true)
     @GetMapping("/findAll")
-    public List<DueñoDtoResponse> findAll() {
+    public List<DuenoDtoResponse> findAll() {
         return duenosService.devolverTodosLosdueños();
     }
 
     @Transactional(readOnly = true)
     @GetMapping("/findById/{id}")
     public ResponseEntity<?> encontrarPorId(@PathVariable("id") Long id) {
-        DueñoDtoResponse dueñoDtoResponse = DuenosMapper.entityToDto(duenosService.findById(id).get());
+        DuenoDtoResponse dueñoDtoResponse = duenosService.findById(id).get();
         return ResponseEntity.ok(dueñoDtoResponse);
 
     }
@@ -50,6 +47,12 @@ public class DuenosController {
         DuenosDtoRequest actualizado = duenosService.actualizado(dueno, id);
         return ResponseEntity.status(201).body(actualizado);
 
+    }
+
+    @Transactional
+    @GetMapping("/findByEmail/{email}")
+    public List<Dueños> findByEmail(@PathVariable("email")String email){
+        return  duenosService.findByemail(email);
     }
 
 

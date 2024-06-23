@@ -1,7 +1,7 @@
 package com.example.api.service;
 
 import com.example.api.dtos.DuenosDtoRequest;
-import com.example.api.dtos.DueñoDtoResponse;
+import com.example.api.dtos.DuenoDtoResponse;
 import com.example.api.mappers.DuenoRequestMapper;
 import com.example.api.mappers.DuenosMapper;
 import com.example.api.models.Dueños;
@@ -17,13 +17,13 @@ public class DuenosService {
     @Autowired
     DuenosRepository duenosRepository;
 
-    public List<DueñoDtoResponse> devolverTodosLosdueños(){
+    public List<DuenoDtoResponse> devolverTodosLosdueños(){
 
         return DuenosMapper.entitystoDtos(duenosRepository.findAll());
     }
-    public Optional<Dueños> findById (Long id){
-
-    return duenosRepository.findById(id);
+    public Optional<DuenoDtoResponse> findById (Long id){
+        Dueños dueños = duenosRepository.findById(id).orElseThrow();
+        return Optional.of(DuenosMapper.entityToDto(dueños));
 
     }
 
@@ -44,4 +44,8 @@ public class DuenosService {
 
     }
 
+
+    public List<Dueños> findByemail(String email){
+      return   duenosRepository.findByEmail(email);
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.api.mappers;
 
 import com.example.api.dtos.DuenosDtoRequest;
-import com.example.api.dtos.DueñoDtoResponse;
 import com.example.api.models.Dueños;
 
 import java.util.ArrayList;

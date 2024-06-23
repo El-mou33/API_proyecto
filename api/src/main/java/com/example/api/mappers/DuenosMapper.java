@@ -1,6 +1,6 @@
 package com.example.api.mappers;
 
-import com.example.api.dtos.DueñoDtoResponse;
+import com.example.api.dtos.DuenoDtoResponse;
 import com.example.api.models.Dueños;
 
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import java.util.List;
 public  class DuenosMapper {
 
 
-    public static DueñoDtoResponse entityToDto(Dueños dueno){
-        DueñoDtoResponse nuevo = new DueñoDtoResponse();
+    public static DuenoDtoResponse entityToDto(Dueños dueno){
+        DuenoDtoResponse nuevo = new DuenoDtoResponse();
         nuevo.setDni(dueno.getDni());
         nuevo.setIdDueno(dueno.getIdDueno());
         nuevo.setApellidos(dueno.getApellidos());
@@ -22,8 +22,8 @@ public  class DuenosMapper {
 
     }
 
-    public static List<DueñoDtoResponse> entitystoDtos(List<Dueños>duenos){
-        List<DueñoDtoResponse> dtos = new ArrayList<>();
+    public static List<DuenoDtoResponse> entitystoDtos(List<Dueños>duenos){
+        List<DuenoDtoResponse> dtos = new ArrayList<>();
         for (Dueños entity:
              duenos) {
             dtos.add(DuenosMapper.entityToDto(entity));

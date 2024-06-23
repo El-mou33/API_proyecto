@@ -1,6 +1,5 @@
 package com.example.api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +22,6 @@ public class AdoptedDogs {
     @Column(length = 1000)
     private String imagenes;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "duenos_id")
     private Dueños duenos;
